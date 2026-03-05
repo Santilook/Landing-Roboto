@@ -1,113 +1,250 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/logo-R.svg" />
-		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;500&display=swap" rel="stylesheet">
-		<link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-		<title>ROBOTO</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/logo-R.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Orbitron:wght@500;700&family=Rajdhani:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <title>ROBOTO</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
 <style is:global>
-	@import "tailwindcss";
-	html,
-	body {
-		font-family: 'Rajdhani', sans-serif;
-		margin: 0;
-		height: 100%;
-		width: 100%;
-	}
+  @import "tailwindcss";
+  html,
+  body {
+    font-family: "Rajdhani", sans-serif;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
 
-	h2, h3 {
-        font-family: 'Orbitron', sans-serif;
-        letter-spacing: 1px;
+  h1,
+  h2 {
+    font-family: "Orbitron", sans-serif;
+  }
+
+  h3 {
+    font-family: "Space Mono", monospace;
+    letter-spacing: 1px;
+  }
+
+  .box {
+    border-radius: 30px;
+    background: rgba(227, 227, 227, 0.3); /* Transparente */
+    box-shadow:
+      20px 20px 60px #c1c1c1,
+      -20px -20px 60px #ffffff;
+  }
+
+  .tooltip-container {;
+    position: relative;
+    background: #00e5ff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.95rem;
+    padding: 12px 32px;
+    border-radius: 9999px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 1px;
+  }
+  .tooltip-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
+  }
+
+  .tooltip-1,
+  .tooltip-2,
+  .tooltip-3 {
+    position: absolute;
+    transform: translateX(-50%);
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 700;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    border-radius: 9999px;
+    background: #0f172b;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    min-width: 110px;
+    width: max-content;
+    padding: 8px 18px;
+    color: #00e5ff;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+  .tooltip-1 {
+    top: 10%;
+    left: 52%;
+    width: max-content;
+  }
+  .tooltip-2 {
+    top: 0%;
+    left: 85%;
+  }
+
+  .tooltip-3 {
+    top: 0;
+    right: 50%;
+  }
+  .tooltip-container:hover .tooltip-1 {
+    top: -150%;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .tooltip-container:hover .tooltip-2 {
+    top: -100%;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .tooltip-container:hover .tooltip-3 {
+    top: -100%;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* ── Robot Selector animations ── */
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes pulseGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 15px rgba(8, 145, 178, 0.15);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(8, 145, 178, 0.3);
+    }
+  }
 
-	.box {
-		border-radius: 30px;
-		background: rgba(227, 227, 227, 0.3); /* Transparente */
-		box-shadow:  20px 20px 60px #c1c1c1,
-        -20px -20px 60px #ffffff;
-	}
+  .robot-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    pointer-events: visible;
+  }
+  .robot-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(8, 145, 178, 0.2);
+    border-color: #0891b2 !important;
+  }
+  .robot-card.active {
+    border-color: #0891b2 !important;
+    box-shadow: 0 0 20px rgba(8, 145, 178, 0.25);
+  }
 
-	.tooltip-container {
-		position: relative;
-		background: #f80254;
-		cursor: pointer;
-		transition: all 0.2s;
-		font-size: 1.2rem;
-		padding: 14px 26px;
-		border-radius: 5px;
-		text-align: center;
-		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.62),
-			inset 0px -2px 3px rgba(0, 0, 0, 0.48), inset 1px 1px 4px #ffffff,
-			rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-			rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-weight: 800;
-		color: #fff;
-	}
+  .detail-panel {
+    animation: fadeSlideUp 0.35s ease;
+  }
 
-	.tooltip-1,
-	.tooltip-2,
-	.tooltip-3 {
-		position: absolute;
-		transform: translateX(-50%);
-		font-weight: 800;
-		opacity: 0;
-		pointer-events: none;
-		transition: all 0.3s;
-		border-radius: 8px 8px 8px 8px;
-		background: #ffdb0f;
-		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.62),
-			inset 0px -2px 3px rgba(0, 0, 0, 0.48), inset 1px 1px 4px #ffffff,
-			rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-			rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-		min-width: 110px;
-		width: 110px;
-		padding: 6px 0.1rem 6px;
-		color: #ac0039;
-		font-size: 0.8rem;
-	}
-	.tooltip-1 {
-		top: 0%;
-		left: 50%;
-		width: 200px;
-	}
-	.tooltip-2 {
-		top: 0%;
-		left: 84%;
-	}
+  .buy-btn {
+    pointer-events: visible;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .buy-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 35px rgba(8, 145, 178, 0.5) !important;
+  }
+  .buy-btn:active {
+    transform: scale(0.98);
+  }
 
-	.tooltip-3 {
-		top: 0;
-		right: 60%;
-	}
-	.tooltip-container:hover .tooltip-1 {
-		top: -150%;
-		opacity: 1;
-		visibility: visible;
-		pointer-events: auto;
-	}
-	.tooltip-container:hover .tooltip-2 {
-		top: -150%;
-		opacity: 1;
-		visibility: visible;
-		pointer-events: auto;
-	}
-	.tooltip-container:hover .tooltip-3 {
-		top: -150%;
-		opacity: 1;
-		visibility: visible;
-		pointer-events: auto;
-	}
+  .tag-pill {
+    pointer-events: visible;
+  }
 
+  /* Stat bar animation */
+  .stat-bar-fill {
+    transition: width 0.6s ease;
+  }
 
+  /* ── Jefes Section ── */
+  .jefe-photo-wrapper {
+    position: relative;
+    padding: 4px;
+  }
+  .jefe-photo-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 3px solid #00e5ff;
+    clip-path: polygon(
+      0 10%,
+      10% 0,
+      90% 0,
+      100% 10%,
+      100% 90%,
+      90% 100%,
+      10% 100%,
+      0 90%
+    );
+    pointer-events: none;
+  }
+
+  .jefe-photo {
+    width: 180px;
+    height: 210px;
+    overflow: hidden;
+    clip-path: polygon(
+      0 10%,
+      10% 0,
+      90% 0,
+      100% 10%,
+      100% 90%,
+      90% 100%,
+      10% 100%,
+      0 90%
+    );
+    background: #0f172b;
+    transition: all 0.3s ease;
+  }
+  .jefe-photo:hover {
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+  }
+
+  .jefe-badge {
+    display: inline-block;
+    background: #00e5ff;
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 14px;
+    letter-spacing: 2px;
+    width: fit-content;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 8px) 0,
+      100% 50%,
+      calc(100% - 8px) 100%,
+      0 100%
+    );
+  }
 </style>

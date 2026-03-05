@@ -1,7 +1,10 @@
 ---
-import Herosection1 from "../components/Herosection-1.astro";
-import Herosection2 from "../components/Herosection-2.astro";
+import Inicio from "../components/inicio.astro";
+import Modelos from "../components/modelos.astro";
+import Nosotros from "../components/nosotros.astro";
 import Layout from "../layouts/Layout.astro";
+import Contacto from "../components/contacto.astro";
+import Footer from "../components/footer.astro";
 ---
 
 <Layout>
@@ -11,8 +14,11 @@ import Layout from "../layouts/Layout.astro";
       style="position:absolute;top:0;left:0;width:100vw;height:100vh;z-index:0; position: fixed;"
     ></spline-viewer>
 
-    <Herosection1 />
-    <Herosection2 />
+    <Inicio />
+    <Modelos />
+    <Nosotros />
+    <Contacto />
+    <Footer />
   </div>
   <script
     type="module"

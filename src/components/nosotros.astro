@@ -1,0 +1,417 @@
+---
+import BtnContacto from "./extras/Btn-contacto.astro";
+
+const jefes = [
+  {
+    id: 1,
+    nombre: "DR. ELIAS VANCE",
+    edad: 30,
+    rol: "AI CORE DESIGNER",
+    imagen: "/jefe1.webp",
+  },
+  {
+    id: 2,
+    nombre: "ANTONELLA CORTÉS",
+    edad: 35,
+    rol: "KINETIC SYNTHESIS",
+    imagen: "/jefe2.webp",
+  },
+  {
+    id: 3,
+    nombre: "MARCUS THORNE",
+    edad: 40,
+    rol: "HARDWARE ARCHITECT",
+    imagen: "/jefe3.webp",
+  },
+  {
+    id: 4,
+    nombre: "ARIA ZHANG",
+    edad: 28,
+    rol: "ETHICS & COMPLIANCE",
+    imagen: "/jefe4.webp",
+  },
+];
+---
+
+<!-- SECCIÓN 1: NOSOTROS -->
+<section
+  id="nosotros"
+  class="w-full flex flex-col items-center justify-center px-10 py-15 box-border relative z-10"
+>
+  <div
+    class="bg-[#EFF0F1] w-full rounded-3xl overflow-hidden p-10"
+    style="background-image: linear-gradient(rgba(8,145,178,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(8,145,178,0.05) 1px, transparent 1px); background-size: 50px 50px;"
+  >
+    <!-- HEADER -->
+    <div class="text-center mb-10">
+      <div class="flex items-center justify-center gap-3 mb-3">
+        <span class="inline-block w-10 h-[3px] bg-cyan-600 rounded-sm"></span>
+        <span class="font-[Orbitron] text-xs tracking-[6px] text-cyan-700"
+          >NOSOTROS</span
+        >
+        <span class="inline-block w-10 h-[3px] bg-cyan-600 rounded-sm"></span>
+      </div>
+      <h2
+        class="font-[Orbitron] text-[clamp(28px,4vw,48px)] font-bold text-gray-900 m-0 tracking-[4px]"
+      >
+        Sobre Nosotros
+      </h2>
+      <p class="font-[Rajdhani] text-lg text-gray-500 mt-3 tracking-[1px]">
+        Conoce más sobre nosotros
+      </p>
+    </div>
+
+    <!-- 4 CARDS EN FILA -->
+    <div class="grid grid-cols-2 grid-rows-2 gap-10 items-start">
+      <!-- [01] MISIÓN -->
+      <div
+        class="flex flex-col gap-4 border-l-4 border-[#00e5ff] bg-white/60 rounded-2xl p-5 h-full shadow-xl"
+      >
+        <h3
+          class="font-[Orbitron] text-base font-bold text-gray-800 flex items-center gap-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 48 48"
+          >
+            <circle
+              cx="24"
+              cy="24"
+              r="21.5"
+              fill="none"
+              stroke="#00e5ff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"></circle>
+            <circle
+              cx="24"
+              cy="24"
+              r="15.659"
+              fill="none"
+              stroke="#00e5ff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"></circle>
+            <circle
+              cx="24"
+              cy="24"
+              r="9.855"
+              fill="none"
+              stroke="#00e5ff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"></circle>
+          </svg>
+          [01] Nuestra Misión
+        </h3>
+        <div class="p-3 bg-cyan-500/10 rounded-xl flex flex-col gap-3">
+          <p class="text-cyan-700 font-semibold text-sm leading-relaxed">
+            [DESCRYPTING...] Ser la empresa líder en el mercado de robótica,
+            ofreciendo productos de alta calidad y tecnología de vanguardia.
+          </p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            [SYSTEM_MISSION...] Nuestra misión es transformar el mundo a través
+            de la tecnología, ofreciendo soluciones innovadoras y de alta
+            calidad. Nos especializamos en la creación de inteligencias
+            artificiales adaptativas que puedan interactuar naturalmente con
+            entornos humanos.
+          </p>
+        </div>
+      </div>
+
+      <!-- [02] VISIÓN -->
+      <div
+        class="flex flex-col gap-4 border-l-4 border-[#00e5ff] bg-white/60 rounded-2xl p-5 h-full shadow-xl"
+      >
+        <h3
+          class="font-[Orbitron] text-base font-bold text-gray-800 flex items-center gap-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 14 14"
+          >
+            <path
+              fill="none"
+              stroke="#00e5ff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9.933 13.092a56 56 0 0 0 2.016-.234a.99.99 0 0 0 .854-.861c.08-.643.159-1.312.223-1.997M4.068.908a56 56 0 0 0-2.016.234a.99.99 0 0 0-.855.86A66 66 0 0 0 .974 4M9.933.908c.69.066 1.365.148 2.016.234a.99.99 0 0 1 .854.86c.08.644.159 1.313.223 1.998m-8.958 9.092a59 59 0 0 1-2.016-.234a.99.99 0 0 1-.855-.861A66 66 0 0 1 .974 10M7 5.162V3.877m0 1.285c.787 0 1.604 0 2.329.094a1.406 1.406 0 0 1 1.216 1.184c.059.403.059.812.059 1.508c0 .697 0 1.106-.06 1.508A1.406 1.406 0 0 1 9.33 10.64c-.725.095-1.542.095-2.329.095c-.786 0-1.603 0-2.328-.095a1.406 1.406 0 0 1-1.216-1.184c-.059-.402-.059-.811-.059-1.508s0-1.105.059-1.508a1.406 1.406 0 0 1 1.216-1.184c.725-.094 1.542-.094 2.328-.094m1.296 2.98v-.388M5.7 8.142v-.388M7 3.864c.616 0 .963-.347.963-.963S7.616 1.94 7 1.94s-.962.347-.962.962s.347.963.962.963"
+              stroke-width="1"></path>
+          </svg>
+          [02] Nuestra Visión
+        </h3>
+        <div class="p-3 bg-cyan-500/10 rounded-xl flex flex-col gap-3 relative">
+          <p class="text-cyan-700 font-semibold text-sm leading-relaxed">
+            [PROJECTION...] Visualizamos un futuro donde humanos y máquinas
+            coexistan en perfecta armonía y sinergia.
+          </p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            [SYSTEM_VISION...] Aspiramos a democratizar el acceso a la robótica
+            avanzada, desarrollando androides éticos, seguros y eficientes que
+            potencian las capacidades humanas en ámbitos médicos, industriales y
+            domésticos, marcando el inicio de una nueva era.
+          </p>
+        </div>
+        <div class="tooltip-container mt-15" style="pointer-events:auto;">
+          <span class="tooltip-1">Explora nuestra visión</span>
+          <span class="tooltip-2">Descubre cómo unimos IA y diseño</span>
+          <span class="tooltip-3">Conoce nuestros robots adaptativos</span>
+          <span>UIVERSE</span>
+        </div>
+      </div>
+
+      <!-- [03] HISTORIA -->
+      <div
+        class="flex flex-col gap-4 border-l-4 border-[#00e5ff] bg-white/60 rounded-2xl p-5 h-full shadow-xl"
+      >
+        <h3
+          class="font-[Orbitron] text-base font-bold text-gray-800 flex items-center gap-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+          >
+            <g
+              fill="none"
+              stroke="#00e5ff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            >
+              <path
+                d="m9.25 18.876l-6.512-4.682m3.002-2.673l5.143 3.813M.751 11.751a2.5 2.5 0 1 0 5 0a2.5 2.5 0 0 0-5 0m4.886-.746l5.611-5.465m-.856-3.962L1.257 10.25m8.492-7a2.5 2.5 0 1 0 5 0a2.5 2.5 0 0 0-5 0m6.545 4.132l-2.3-2.35m1.756 3.719a2 2 0 1 0 4 0a2 2 0 0 0-4 0"
+              ></path>
+              <path
+                d="M19.7 8.3a3 3 0 0 1 3.55 2.951m-3 3A3 3 0 0 1 17.3 10.7M1 23.251h22m-13.75 0V18a3 3 0 0 1 6 0v5.25"
+              ></path>
+            </g>
+          </svg>
+          [03] Nuestra Historia
+        </h3>
+        <div class="p-3 bg-cyan-500/10 rounded-xl flex flex-col gap-3">
+          <p class="text-cyan-700 font-semibold text-sm leading-relaxed">
+            [ARCHIVE...] Fundada en 2032 con el propósito de revolucionar la
+            interfaz humano-máquina mediante redes neuronales cuánticas.
+          </p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            [SYSTEM_HISTORY...] Comenzamos como un pequeño laboratorio de
+            bioingeniería algorítmica. Tras una década de investigación sin
+            descanso, el Dr. Vance y su equipo lograron sintetizar el primer
+            núcleo cognitivo autónomo, dando origen a la generación cero de
+            nuestros modelos robóticos actuales.
+          </p>
+        </div>
+      </div>
+
+      <!-- [04] VALORES -->
+      <div
+        class="flex flex-col gap-4 border-l-4 border-[#00e5ff] bg-white/60 rounded-2xl p-5 h-full shadow-xl"
+      >
+        <h3
+          class="font-[Orbitron] text-base font-bold text-gray-800 flex items-center gap-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 48 48"
+          >
+            <path
+              fill="none"
+              stroke="#00e5ff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M22.873 21.466a1.282 1.282 0 0 0-.995 2.091l2.055 2.413l2.035-2.389l.01-.011l.01-.013a1.283 1.283 0 1 0-2.055-1.53a1.28 1.28 0 0 0-1.058-.56z"
+              stroke-width="1"></path>
+            <g
+              fill="none"
+              stroke="#00e5ff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+            >
+              <path
+                d="M37.855 22.76a.942.942 0 1 1-1.885 0a.942.942 0 0 1 1.885 0m-4.711 0a.942.942 0 1 1-1.885 0a.942.942 0 0 1 1.885 0"
+              ></path>
+              <path
+                d="m29.375 16.164l3.769 3.769h2.826l3.77-3.77v12.25H29.374zm-1.178 10.364h2.355m-2.355-1.413h2.355m8.009 1.413h2.356m-2.356-1.413h2.356m-6.36.941v-1.23m0 1.23l-.744.923m-.333-1.599l1.077.676m0 0l.743.923m.334-1.599l-1.077.676m-3.77 5.056a.942.942 0 1 1 0-1.632m5.18 1.632a.942.942 0 1 1 0-1.632m-4.239 1.757h1.885m3.297 0h1.884m.941 0h1.885m.942-4.761s.938 1.067.938 2.38s-.938 2.38-.938 2.38"
+              ></path>
+            </g>
+            <path
+              fill="none"
+              stroke="#00e5ff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.907 16.457c2.86 0 5.012 2.288 5.012 5.11v.728H4.504v-.729c0-2.821 1.543-5.109 4.404-5.109zm4.472-.763l-1.47 1.708m-7.154-1.708l1.414 1.708"
+              stroke-width="1"></path>
+            <path
+              fill="none"
+              stroke="#00e5ff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.436 19.94a.942.942 0 1 1-1.885 0a.942.942 0 0 1 1.885 0m3.769 0a.942.942 0 1 1-1.885 0a.942.942 0 0 1 1.885 0m1.718 6.356h2.355m-2.355-1.413h2.355M4.5 22.292h9.422V30.3H4.5z"
+              stroke-width="1"></path>
+            <path
+              fill="#00e5ff"
+              d="M7.606 31.556a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m4.711 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0"
+            ></path>
+            <path
+              fill="none"
+              stroke="#00e5ff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M18.775 26.21v.015c0 .69-.559 1.248-1.248 1.248h0c-.69 0-1.249-.559-1.249-1.248v-1.272c0-.69.559-1.249 1.249-1.249h0c.69 0 1.248.56 1.248 1.249v.015"
+              stroke-width="1"></path>
+          </svg>
+          [04] Nuestros Valores
+        </h3>
+        <div class="p-3 bg-cyan-500/10 rounded-xl flex flex-col gap-3">
+          <p class="text-cyan-700 font-semibold text-sm leading-relaxed">
+            [CORE_ETHICS...] La integridad, la seguridad y la transparencia
+            forman el código base de cada uno de nuestros sistemas.
+          </p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            [SYSTEM_VALUES...] Creemos firmemente en el diseño centrado en las
+            personas, el respeto incondicional por las leyes de la robótica
+            avanzada y el progreso sostenible. Nuestro compromiso es garantizar
+            que la tecnología siempre eleve y proteja a la humanidad en todo
+            momento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 2: JEFES -->
+<section
+  id="jefes"
+  class="w-full flex flex-col items-center justify-center px-10 py-15 box-border relative z-20"
+>
+  <div
+    class="bg-[#EFF0F1] w-full rounded-3xl overflow-hidden p-10 border-t-[4px] border-slate-400"
+    style="background-image: linear-gradient(rgba(8,145,178,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(8,145,178,0.05) 1px, transparent 1px); background-size: 50px 50px;"
+  >
+    <div class="text-center" style="pointer-events:auto;">
+      <div class="flex items-center justify-center gap-3 mb-3">
+        <span class="inline-block w-10 h-[3px] bg-cyan-600 rounded-sm"></span>
+        <span class="font-[Orbitron] text-xs tracking-[6px] text-cyan-700">
+          EQUIPO
+        </span>
+        <span class="inline-block w-10 h-[3px] bg-cyan-600 rounded-sm"></span>
+      </div>
+      <h2
+        class="font-[Orbitron] text-[clamp(28px,4vw,48px)] font-bold text-gray-900 m-0 tracking-[4px]"
+      >
+        Nuestro Equipo
+      </h2>
+      <p class="font-[Rajdhani] text-lg text-gray-500 mt-3 tracking-[1px]">
+        Los arquitectos detrás de la revolución robótica
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-2 gap-x-16 gap-y-20 max-w-[1500px] mx-auto"
+      style="pointer-events:auto;"
+    >
+      {
+        jefes.map((jefe, index) => {
+          const isEven = index % 2 !== 0;
+          return (
+            <div
+              class={`flex items-start gap-8 ${isEven ? "flex-row-reverse" : ""}`}
+            >
+              {/* FOTO */}
+              <div class="jefe-photo-wrapper shrink-0">
+                <div class="jefe-photo">
+                  <img
+                    src={jefe.imagen}
+                    alt={jefe.nombre}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* INFO */}
+              <div
+                class={`flex flex-col gap-3 ${isEven ? "text-right items-end" : ""}`}
+              >
+                <span class="jefe-badge font-[Orbitron]">
+                  ID: ARCH-0{jefe.id}
+                </span>
+                <h3 class="font-['Space_Mono'] text-3xl font-bold text-gray-900 leading-tight tracking-wide m-0">
+                  {jefe.nombre}
+                </h3>
+                <div
+                  class={`flex flex-col gap-1 font-['Space_Mono'] text-sm tracking-wider ${isEven ? "items-end" : ""}`}
+                >
+                  <p class="m-0">
+                    <span class="text-[#00e5ff]">ROLE: </span>
+                    <span class="text-gray-500 font-bold">{jefe.rol}</span>
+                  </p>
+                  <p class="m-0">
+                    <span class="text-[#00e5ff]">EDAD: </span>
+                    <span class="text-gray-500 font-bold">
+                      {jefe.edad} AÑOS
+                    </span>
+                  </p>
+                </div>
+                <div class="flex gap-1.5 mt-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#00e5ff]" />
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#00e5ff] opacity-60" />
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#00e5ff] opacity-30" />
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const nosotrosSection = document.getElementById("nosotros");
+    const jefesSection = document.getElementById("jefes");
+
+    if (!nosotrosSection || !jefesSection) return;
+
+    // 1. Pin nosotros mientras jefes sube encima
+    ScrollTrigger.create({
+      trigger: nosotrosSection,
+      start: "top top",
+      end: () => `+=${jefesSection.offsetHeight}`, // dura exactamente lo que mide jefes
+      pin: true,
+      pinSpacing: false, // jefes sigue en el flujo normal, sube encima
+    });
+
+    // 2. jefes entra desde abajo mientras nosotros está pinneado
+    gsap.fromTo(
+      jefesSection,
+      { y: 80, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: jefesSection,
+          start: "top 90%", // empieza cuando jefes entra al viewport
+          end: "top 20%", // termina cuando jefes casi llega al top
+          scrub: 1.5, // lag suave que sigue el scroll
+        },
+      },
+    );
+  });
+</script>
