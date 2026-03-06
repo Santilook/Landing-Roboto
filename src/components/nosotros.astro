@@ -1,33 +1,33 @@
 ---
 import BtnContacto from "./extras/Btn-contacto.astro";
-
+import { StripedPattern } from "./magicui/backgrounds.tsx";
 const jefes = [
   {
     id: 1,
     nombre: "DR. ELIAS VANCE",
     edad: 30,
-    rol: "AI CORE DESIGNER",
+    rol: "DISEÑADOR DE NÚCLEO DE IA",
     imagen: "/jefe1.webp",
   },
   {
     id: 2,
     nombre: "ANTONELLA CORTÉS",
     edad: 35,
-    rol: "KINETIC SYNTHESIS",
+    rol: "SÍNTESIS CINÉTICA",
     imagen: "/jefe2.webp",
   },
   {
     id: 3,
     nombre: "MARCUS THORNE",
     edad: 40,
-    rol: "HARDWARE ARCHITECT",
+    rol: "ARQUITECTO DE HARDWARE",
     imagen: "/jefe3.webp",
   },
   {
     id: 4,
     nombre: "ARIA ZHANG",
     edad: 28,
-    rol: "ETHICS & COMPLIANCE",
+    rol: "ÉTICA Y CUMPLIMIENTO",
     imagen: "/jefe4.webp",
   },
 ];
@@ -38,12 +38,10 @@ const jefes = [
   id="nosotros"
   class="w-full flex flex-col items-center justify-center px-10 py-15 box-border relative z-10"
 >
-  <div
-    class="bg-[#EFF0F1] w-full rounded-3xl overflow-hidden p-10"
-    style="background-image: linear-gradient(rgba(8,145,178,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(8,145,178,0.05) 1px, transparent 1px); background-size: 50px 50px;"
-  >
+  <div class="bg-[#EFF0F1] relative w-full rounded-3xl overflow-hidden p-10">
+    <StripedPattern className="[mask-image:radial-gradient(400px_circle_at_center,white,transparent)] inset-0 z-0 absolute" />
     <!-- HEADER -->
-    <div class="text-center mb-10">
+    <div class="text-center mb-10 relative z-10">
       <div class="flex items-center justify-center gap-3 mb-3">
         <span class="inline-block w-10 h-[3px] bg-cyan-600 rounded-sm"></span>
         <span class="font-[Orbitron] text-xs tracking-[6px] text-cyan-700"
@@ -62,7 +60,7 @@ const jefes = [
     </div>
 
     <!-- 4 CARDS EN FILA -->
-    <div class="grid grid-cols-2 grid-rows-2 gap-10 items-start">
+    <div class="grid grid-cols-2 grid-rows-2 gap-10 items-start relative z-10">
       <!-- [01] MISIÓN -->
       <div
         class="flex flex-col gap-4 border-l-4 border-[#00e5ff] bg-white/60 rounded-2xl p-5 h-full shadow-xl"
@@ -108,12 +106,12 @@ const jefes = [
         </h3>
         <div class="p-3 bg-cyan-500/10 rounded-xl flex flex-col gap-3">
           <p class="text-cyan-700 font-semibold text-sm leading-relaxed">
-            [DESCRYPTING...] Ser la empresa líder en el mercado de robótica,
+            [DESCIFRANDO...] Ser la empresa líder en el mercado de robótica,
             ofreciendo productos de alta calidad y tecnología de vanguardia.
           </p>
           <p class="text-gray-600 text-sm leading-relaxed">
-            [SYSTEM_MISSION...] Nuestra misión es transformar el mundo a través
-            de la tecnología, ofreciendo soluciones innovadoras y de alta
+            [MISIÓN_DEL_SISTEMA...] Nuestra misión es transformar el mundo a
+            través de la tecnología, ofreciendo soluciones innovadoras y de alta
             calidad. Nos especializamos en la creación de inteligencias
             artificiales adaptativas que puedan interactuar naturalmente con
             entornos humanos.
@@ -146,14 +144,14 @@ const jefes = [
         </h3>
         <div class="p-3 bg-cyan-500/10 rounded-xl flex flex-col gap-3 relative">
           <p class="text-cyan-700 font-semibold text-sm leading-relaxed">
-            [PROJECTION...] Visualizamos un futuro donde humanos y máquinas
+            [PROYECCIÓN...] Visualizamos un futuro donde humanos y máquinas
             coexistan en perfecta armonía y sinergia.
           </p>
           <p class="text-gray-600 text-sm leading-relaxed">
-            [SYSTEM_VISION...] Aspiramos a democratizar el acceso a la robótica
-            avanzada, desarrollando androides éticos, seguros y eficientes que
-            potencian las capacidades humanas en ámbitos médicos, industriales y
-            domésticos, marcando el inicio de una nueva era.
+            [VISIÓN_DEL_SISTEMA...] Aspiramos a democratizar el acceso a la
+            robótica avanzada, desarrollando androides éticos, seguros y
+            eficientes que potencian las capacidades humanas en ámbitos médicos,
+            industriales y domésticos, marcando el inicio de una nueva era.
           </p>
         </div>
         <div class="tooltip-container mt-15" style="pointer-events:auto;">
@@ -196,11 +194,11 @@ const jefes = [
         </h3>
         <div class="p-3 bg-cyan-500/10 rounded-xl flex flex-col gap-3">
           <p class="text-cyan-700 font-semibold text-sm leading-relaxed">
-            [ARCHIVE...] Fundada en 2032 con el propósito de revolucionar la
+            [ARCHIVO...] Fundada en 2032 con el propósito de revolucionar la
             interfaz humano-máquina mediante redes neuronales cuánticas.
           </p>
           <p class="text-gray-600 text-sm leading-relaxed">
-            [SYSTEM_HISTORY...] Comenzamos como un pequeño laboratorio de
+            [HISTORIA_DEL_SISTEMA...] Comenzamos como un pequeño laboratorio de
             bioingeniería algorítmica. Tras una década de investigación sin
             descanso, el Dr. Vance y su equipo lograron sintetizar el primer
             núcleo cognitivo autónomo, dando origen a la generación cero de
@@ -273,12 +271,12 @@ const jefes = [
         </h3>
         <div class="p-3 bg-cyan-500/10 rounded-xl flex flex-col gap-3">
           <p class="text-cyan-700 font-semibold text-sm leading-relaxed">
-            [CORE_ETHICS...] La integridad, la seguridad y la transparencia
+            [ÉTICA_CENTRAL...] La integridad, la seguridad y la transparencia
             forman el código base de cada uno de nuestros sistemas.
           </p>
           <p class="text-gray-600 text-sm leading-relaxed">
-            [SYSTEM_VALUES...] Creemos firmemente en el diseño centrado en las
-            personas, el respeto incondicional por las leyes de la robótica
+            [VALORES_DEL_SISTEMA...] Creemos firmemente en el diseño centrado en
+            las personas, el respeto incondicional por las leyes de la robótica
             avanzada y el progreso sostenible. Nuestro compromiso es garantizar
             que la tecnología siempre eleve y proteja a la humanidad en todo
             momento.
@@ -289,16 +287,16 @@ const jefes = [
   </div>
 </section>
 
-<!-- SECCIÓN 2: JEFES -->
+<!-- SECCIÓN 2: EQUIPO -->
 <section
-  id="jefes"
+  id="equipo"
   class="w-full flex flex-col items-center justify-center px-10 py-15 box-border relative z-20"
 >
   <div
-    class="bg-[#EFF0F1] w-full rounded-3xl overflow-hidden p-10 border-t-[4px] border-slate-400"
-    style="background-image: linear-gradient(rgba(8,145,178,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(8,145,178,0.05) 1px, transparent 1px); background-size: 50px 50px;"
+    class="bg-[#EFF0F1] relative w-full rounded-3xl overflow-hidden p-10 pb-20 shadow-[0_-20px_50px_rgba(0,0,0,0.15)]"
   >
-    <div class="text-center" style="pointer-events:auto;">
+    <StripedPattern className="[mask-image:radial-gradient(400px_circle_at_center,white,transparent)] inset-0 z-0 absolute" />
+    <div class="text-center relative z-10" style="pointer-events:auto;">
       <div class="flex items-center justify-center gap-3 mb-3">
         <span class="inline-block w-10 h-[3px] bg-cyan-600 rounded-sm"></span>
         <span class="font-[Orbitron] text-xs tracking-[6px] text-cyan-700">
@@ -317,7 +315,7 @@ const jefes = [
     </div>
 
     <div
-      class="grid grid-cols-2 gap-x-16 gap-y-20 max-w-[1500px] mx-auto"
+      class="grid grid-cols-2 gap-x-16 gap-y-20 max-w-[1500px] mx-auto relative z-10"
       style="pointer-events:auto;"
     >
       {
@@ -352,7 +350,7 @@ const jefes = [
                   class={`flex flex-col gap-1 font-['Space_Mono'] text-sm tracking-wider ${isEven ? "items-end" : ""}`}
                 >
                   <p class="m-0">
-                    <span class="text-[#00e5ff]">ROLE: </span>
+                    <span class="text-[#00e5ff]">ROL: </span>
                     <span class="text-gray-500 font-bold">{jefe.rol}</span>
                   </p>
                   <p class="m-0">
@@ -384,31 +382,31 @@ const jefes = [
 
   document.addEventListener("DOMContentLoaded", () => {
     const nosotrosSection = document.getElementById("nosotros");
-    const jefesSection = document.getElementById("jefes");
+    const equipoSection = document.getElementById("equipo");
 
-    if (!nosotrosSection || !jefesSection) return;
+    if (!nosotrosSection || !equipoSection) return;
 
     // 1. Pin nosotros mientras jefes sube encima
     ScrollTrigger.create({
       trigger: nosotrosSection,
       start: "top top",
-      end: () => `+=${jefesSection.offsetHeight}`, // dura exactamente lo que mide jefes
+      end: () => `+=${equipoSection.offsetHeight}`, // dura exactamente lo que mide equipo
       pin: true,
-      pinSpacing: false, // jefes sigue en el flujo normal, sube encima
+      pinSpacing: false, // equipo sigue en el flujo normal, sube encima
     });
 
-    // 2. jefes entra desde abajo mientras nosotros está pinneado
+    // 2. equipo entra desde abajo mientras nosotros está pinneado
     gsap.fromTo(
-      jefesSection,
+      equipoSection,
       { y: 80, opacity: 0 },
       {
         y: 0,
         opacity: 1,
         ease: "power2.out",
         scrollTrigger: {
-          trigger: jefesSection,
-          start: "top 90%", // empieza cuando jefes entra al viewport
-          end: "top 20%", // termina cuando jefes casi llega al top
+          trigger: equipoSection,
+          start: "top 90%", // empieza cuando equipo entra al viewport
+          end: "top 20%", // termina cuando equipo casi llega al top
           scrub: 1.5, // lag suave que sigue el scroll
         },
       },

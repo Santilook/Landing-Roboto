@@ -3,95 +3,98 @@ import { useState, useEffect } from "react";
 import robot1Img from "../../assets/robot-1.webp";
 import robot2Img from "../../assets/robot-2.webp";
 import robot3Img from "../../assets/robot-3.webp";
+import robot4Img from "../../assets/robot-4.webp";
+import robot5Img from "../../assets/robot-5.webp";
+import robot6Img from "../../assets/robot-6.webp";
 
 const robots = [
   {
     id: 1,
     name: "T-800 ASSAULT",
-    tags: ["COMBAT", "HEAVY"],
+    tags: ["COMBATE", "PESADO"],
     price: "$125,000",
     icon: "⚔",
     description:
       "Unidad de combate pesado con blindaje de titanio grado militar. Diseñada para operaciones en zonas de conflicto de alta intensidad.",
     specs: { armor: 95, speed: 60, weapons: 98, intel: 72 },
-    status: "ONLINE",
+    status: "EN LÍNEA",
     integrity: 100,
-    weaponSys: "ARMED",
+    weaponSys: "ARMADO",
     image: robot1Img,
   },
   {
     id: 2,
     name: "XJ-9 SENTRY",
-    tags: ["UTILITY", "DEFENSE"],
+    tags: ["UTILIDAD", "DEFENSA"],
     price: "$85,000",
     icon: "🛡",
     description:
       "Centinela autónomo para vigilancia perimetral. Sensores de largo alcance y respuesta de amenaza en milisegundos.",
     specs: { armor: 80, speed: 55, weapons: 65, intel: 90 },
-    status: "ONLINE",
+    status: "EN LÍNEA",
     integrity: 97,
-    weaponSys: "STANDBY",
+    weaponSys: "EN ESPERA",
     image: robot2Img,
   },
   {
     id: 3,
     name: "V-22 RAPTOR",
-    tags: ["COMBAT", "AERIAL"],
+    tags: ["COMBATE", "AÉREO"],
     price: "$150,000",
     icon: "✈",
     description:
       "Unidad de combate aéreo de alta velocidad. Sistema de propulsión dual con capacidad de maniobra en entornos urbanos.",
     specs: { armor: 65, speed: 99, weapons: 92, intel: 80 },
-    status: "ONLINE",
+    status: "EN LÍNEA",
     integrity: 88,
-    weaponSys: "ARMED",
+    weaponSys: "ARMADO",
     image: robot3Img,
   },
   {
     id: 4,
     name: "K-12 LOADER",
-    tags: ["UTILITY", "LOGISTICS"],
+    tags: ["UTILIDAD", "LOGÍSTICA"],
     price: "$65,000",
     icon: "⚙",
     description:
       "Unidad de carga y logística con capacidad de levantamiento de 5 toneladas. Optimizada para operaciones de suministro.",
     specs: { armor: 88, speed: 40, weapons: 20, intel: 75 },
-    status: "ONLINE",
+    status: "EN LÍNEA",
     integrity: 100,
-    weaponSys: "UNARMED",
-    image: robot1Img,
+    weaponSys: "DESARMADO",
+    image: robot4Img,
   },
   {
     id: 5,
     name: "M-500 MEDIC",
-    tags: ["SUPPORT", "MEDICAL"],
+    tags: ["SOPORTE", "MÉDICO"],
     price: "$110,000",
     icon: "✚",
     description:
       "Unidad de soporte médico avanzado. Capaz de realizar cirugías de campo y triaje autónomo en zonas de combate.",
     specs: { armor: 60, speed: 70, weapons: 30, intel: 98 },
-    status: "ONLINE",
+    status: "EN LÍNEA",
     integrity: 99,
-    weaponSys: "STANDBY",
-    image: robot2Img,
+    weaponSys: "EN ESPERA",
+    image: robot5Img,
   },
   {
     id: 6,
     name: "S-9 SCOUT",
-    tags: ["RECON", "STEALTH"],
+    tags: ["RECONOCIMIENTO", "SIGILO"],
     price: "$92,000",
     icon: "👁",
     description:
       "Unidad de reconocimiento con tecnología de camuflaje activo. Emisión de señal cero en modo stealth.",
     specs: { armor: 45, speed: 95, weapons: 55, intel: 96 },
-    status: "ONLINE",
+    status: "EN LÍNEA",
     integrity: 94,
-    weaponSys: "CONCEALED",
-    image: robot3Img,
+    weaponSys: "OCULTO",
+    image: robot6Img,
   },
 ];
 
-/* ── Animated Stat bar ── */
+/* ── Barra de Estadísticas Animada ── */
 const StatBar = ({ label, value }) => {
   const [width, setWidth] = useState(0);
 
@@ -148,7 +151,7 @@ export default function RobotSelector() {
       id="modelos"
       className="w-full min-h-screen flex flex-col items-center justify-center px-10 py-15 mt-14 pointer-events-none box-border relative"
     >
-      {/* ── HEADER ── */}
+      {/* ── ENCABEZADO ── */}
       <div className="text-center mb-12 pointer-events-auto">
         <div className="flex items-center justify-center gap-3 mb-3">
           <span className="inline-block w-10 h-[3px] bg-cyan-600 rounded-sm" />
@@ -165,10 +168,10 @@ export default function RobotSelector() {
         </p>
       </div>
 
-      {/* ── MAIN GRID ── */}
+      {/* ── CUADRÍCULA PRINCIPAL ── */}
       <div className="flex gap-24 w-full max-w-[1400px] items-start">
-        {/* ── LEFT: Robot buttons ── */}
-        <div className="flex flex-col gap-3 w-[440px] shrink-0" >
+        {/* ── IZQUIERDA: Botones de robots ── */}
+        <div className="flex flex-col gap-3 w-[440px] shrink-0">
           {robots.map((robot) => {
             const isActive = selected.id === robot.id;
             return (
@@ -180,7 +183,7 @@ export default function RobotSelector() {
                     : "bg-white/40 border border-cyan-200/40"
                 }`}
               >
-                {/* Icon */}
+                {/* Ícono */}
                 <div
                   className={`w-11 h-11 rounded-xl flex items-center justify-center text-xl shrink-0 ${
                     isActive
@@ -192,7 +195,7 @@ export default function RobotSelector() {
                   {robot.icon}
                 </div>
 
-                {/* Info */}
+                {/* Información */}
                 <div
                   className="flex-1 min-w-0"
                   onClick={() => handleSelect(robot)}
@@ -209,7 +212,7 @@ export default function RobotSelector() {
                   </div>
                 </div>
 
-                {/* Price */}
+                {/* Precio */}
                 <div
                   className={`font-[Orbitron] text-xs font-bold shrink-0 ${
                     isActive ? "text-cyan-700" : "text-gray-400"
@@ -219,7 +222,7 @@ export default function RobotSelector() {
                   {robot.price}
                 </div>
 
-                {/* Active indicator */}
+                {/* Indicador activo */}
                 {isActive && (
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-r-[3px] bg-cyan-600 shadow-[0_0_10px_#0891b2]" />
                 )}
@@ -228,14 +231,14 @@ export default function RobotSelector() {
           })}
         </div>
 
-        {/* ── RIGHT: Detail panel ── */}
+        {/* ── DERECHA: Panel de detalles ── */}
         <div
           key={selected.id}
           className="detail-panel flex-1 rounded-3xl border border-cyan-200/40 bg-white/50 backdrop-blur-xl overflow-hidden"
         >
-          {/* Image / visual area */}
+          {/* Área visual / de imagen */}
           <div className="relative h-80 bg-gradient-to-br from-gray-100/90 via-gray-50/90 to-gray-100/90 flex items-center justify-center overflow-hidden">
-            {/* Grid pattern */}
+            {/* Patrón de cuadrícula */}
             <div
               className="absolute inset-0"
               style={{
@@ -245,10 +248,10 @@ export default function RobotSelector() {
               }}
             />
 
-            {/* Glow circle behind robot */}
+            {/* Círculo de brillo detrás del robot */}
             <div className="absolute w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,rgba(8,145,178,0.1)_0%,transparent_70%)]" />
 
-            {/* Robot image */}
+            {/* Imagen del robot */}
             <img
               src={selected.image.src || selected.image}
               alt={selected.name}
@@ -257,7 +260,7 @@ export default function RobotSelector() {
               }`}
             />
 
-            {/* Unit name overlay */}
+            {/* Superposición del nombre de la unidad */}
             <div className="absolute bottom-7 left-7 z-[2]">
               <h3 className="font-[Orbitron] text-[clamp(24px,3vw,36px)] font-black text-gray-900 m-0 tracking-[4px] drop-shadow-[0_0_25px_rgba(8,145,178,0.3)]">
                 {selected.name}
@@ -274,7 +277,7 @@ export default function RobotSelector() {
               </div>
             </div>
 
-            {/* Status badges — top right */}
+            {/* Insignias de estado — arriba a la derecha */}
             <div className="absolute top-5 right-5 flex flex-col gap-2 items-end">
               <div className="flex items-center gap-2 py-1.5 px-3.5 rounded-full border border-cyan-300/30 bg-white/80 backdrop-blur-lg">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 shadow-[0_0_8px_#0891b2]" />
@@ -283,21 +286,21 @@ export default function RobotSelector() {
                 </span>
               </div>
               <div className="py-1.5 px-3.5 rounded-full border border-cyan-300/30 bg-white/80 backdrop-blur-lg font-[Orbitron] text-[9px] tracking-[2px] text-gray-500">
-                INTEGRITY{" "}
+                INTEGRIDAD{" "}
                 <span className="text-cyan-700">{selected.integrity}%</span>
               </div>
             </div>
 
-            {/* Unit ID — top left */}
+            {/* ID de la unidad — arriba a la izquierda */}
             <div className="absolute top-5 left-7 font-[Orbitron] text-[10px] tracking-[3px] text-cyan-300/40">
-              UNIT-{String(selected.id).padStart(4, "0")}
+              UNIDAD-{String(selected.id).padStart(4, "0")}
             </div>
           </div>
 
-          {/* Info section */}
+          {/* Sección de información */}
           <div className="p-7 border-t border-cyan-200/30">
             <div className="flex gap-7 flex-wrap">
-              {/* Description */}
+              {/* Descripción */}
               <div className="flex-1 min-w-[240px]">
                 <p className="font-[Orbitron] text-[10px] tracking-[3px] text-gray-400 mb-2.5 mt-0">
                   DESCRIPCIÓN DE UNIDAD
@@ -306,7 +309,7 @@ export default function RobotSelector() {
                   {selected.description}
                 </p>
 
-                {/* Price + buy */}
+                {/* Precio + comprar */}
                 <div className="flex items-center gap-5 mt-6 flex-wrap">
                   <div>
                     <p className="font-[Orbitron] text-[10px] tracking-[3px] text-gray-400 mb-1.5 mt-0">
@@ -327,26 +330,26 @@ export default function RobotSelector() {
                 </div>
               </div>
 
-              {/* Stats */}
-              <div className="w-[220px] shrink-0" >
-                <p className="font-[Orbitron] text-[10px] tracking-[3px] text-gray-400 mb-4 mt-0" >
+              {/* Estadísticas */}
+              <div className="w-[220px] shrink-0">
+                <p className="font-[Orbitron] text-[10px] tracking-[3px] text-gray-400 mb-4 mt-0">
                   RENDIMIENTO
                 </p>
-                <StatBar label="ARMADURA" value={selected.specs.armor}  />
+                <StatBar label="ARMADURA" value={selected.specs.armor} />
                 <StatBar label="VELOCIDAD" value={selected.specs.speed} />
                 <StatBar label="ARMAMENTO" value={selected.specs.weapons} />
                 <StatBar label="INTELIGENCIA" value={selected.specs.intel} />
 
-                {/* Weapon status */}
+                {/* Estado del arma */}
                 <div className="mt-4 flex items-center gap-2.5 py-2.5 px-3.5 rounded-xl border border-cyan-200/30 bg-cyan-50/30">
                   <span className="font-[Orbitron] text-[9px] tracking-[2px] text-gray-400">
-                    WEAPON SYS:
+                    SIST. ARMAS:
                   </span>
                   <span
                     className={`font-[Orbitron] text-[10px] font-bold tracking-[2px] ${
-                      selected.weaponSys === "ARMED"
+                      selected.weaponSys === "ARMADO"
                         ? "text-cyan-700"
-                        : selected.weaponSys === "STANDBY"
+                        : selected.weaponSys === "EN ESPERA"
                           ? "text-gray-500"
                           : "text-gray-400"
                     }`}
