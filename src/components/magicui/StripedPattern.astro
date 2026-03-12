@@ -1,0 +1,55 @@
+---
+/**
+ * StripedPattern — Patrón decorativo de líneas diagonales mobile y tablet
+ */
+interface Props {
+  className?: string;
+  direction?: "left" | "right";
+  width?: number;
+  height?: number;
+}
+
+const {
+  className = "",
+  direction = "left",
+  width = 10,
+  height = 10,
+} = Astro.props;
+
+const patternId = `stripe-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<svg
+  aria-hidden="true"
+  class:list={[
+    "pointer-events-none absolute inset-0 z-10 h-full w-full stroke-[0.5]",
+    className,
+  ]}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <pattern
+      id={patternId}
+      width={width}
+      height={height}
+      patternUnits="userSpaceOnUse"
+    >
+      {
+        direction === "left" ? (
+          <>
+            <line x1="0" y1={height} x2={width} y2="0" stroke="currentColor" />
+            <line x1={-width} y1={height} x2="0" y2="0" stroke="currentColor" />
+            <line x1={width} y1={height} x2={width * 2} y2="0" stroke="currentColor" />
+          </>
+        ) : (
+          <>
+            <line x1="0" y1="0" x2={width} y2={height} stroke="currentColor" />
+            <line x1={-width} y1="0" x2="0" y2={height} stroke="currentColor" />
+            <line x1={width} y1="0" x2={width * 2} y2={height} stroke="currentColor" />
+          </>
+        )
+      }
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill={`url(#${patternId})`} />
+</svg>

@@ -1,5 +1,5 @@
 ---
-import ContadorAnimado from "../ui/ContadorAnimado.jsx"
+import ContadorAnimado from "../ui/ContadorAnimado.astro"
 ---
 
 <header class="relative min-h-screen overflow-hidden pointer-events-none">
@@ -107,7 +107,7 @@ import ContadorAnimado from "../ui/ContadorAnimado.jsx"
     >
       <div class="flex flex-col gap-6 lg:gap-10 mx-6 lg:mx-20 my-10">
         <h2
-          class="text-3xl p-2 bg-white/40 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-none lg:p-0 lg:text-5xl font-bold leading-tight uppercase tracking-tighter rounded-sm"
+          class="text-3xl p-2 lg:bg-transparent lg:backdrop-blur-none lg:p-0 lg:text-5xl font-bold leading-tight uppercase tracking-tighter rounded-sm"
         >
           Más Allá de la Capacidad Humana.
         </h2>
@@ -147,7 +147,7 @@ import ContadorAnimado from "../ui/ContadorAnimado.jsx"
 
     <!-- [03] CONTADOR ANIMADO -->
     <div class="lg:row-start-5 lg:col-start-1 px-6 lg:px-20 py-10">
-      <ContadorAnimado client:visible />
+      <ContadorAnimado />
     </div>
 
     <!-- [04] NAVEGACIÓN (RESPONSIVE) -->
@@ -166,28 +166,28 @@ import ContadorAnimado from "../ui/ContadorAnimado.jsx"
           <li class="flex items-center justify-end gap-2 lg:gap-5">
             <p class="hidden lg:block text-xl text-[#8d9497]">01</p>
             <a
-              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl font-semibold"
+              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl "
               href="/">Inicio</a
             >
           </li>
           <li class="flex items-center justify-end gap-2 lg:gap-5">
             <p class="hidden lg:block text-xl text-[#8d9497]">02</p>
             <a
-              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl font-semibold"
+              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl"
               href="#modelos">Modelos</a
             >
           </li>
           <li class="flex items-center justify-end gap-2 lg:gap-5">
             <p class="hidden lg:block text-xl text-[#8d9497]">03</p>
             <a
-              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl font-semibold"
+              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl"
               href="#nosotros">Nosotros</a
             >
           </li>
           <li class="flex items-center justify-end gap-2 lg:gap-5">
             <p class="hidden lg:block text-xl text-[#8d9497]">04</p>
             <a
-              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl font-semibold"
+              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl"
               href="#contacto">Contacto</a
             >
           </li>

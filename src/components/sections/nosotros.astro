@@ -1,6 +1,6 @@
 ---
 import BtnContacto from "../common/Btn-contacto.astro";
-import { StripedPattern } from "../magicui/backgrounds.tsx";
+import StripedPattern from "../magicui/StripedPattern.astro";
 const jefes = [
   {
     id: 1,
@@ -332,6 +332,8 @@ const jefes = [
                     alt={`Retrato del arquitecto ${jefe.nombre}`}
                     class="w-full h-full object-cover transition-all duration-500"
                     loading="lazy"
+                    width="224"
+                    height="224"
                   />
                 </div>
               </div>
@@ -448,10 +450,15 @@ const jefes = [
   }
 
   document.addEventListener("DOMContentLoaded", initAnimations);
-  // Re-inicializar si cambia el tamaño de ventana (opcional pero recomendado)
+
+  // Re-inicializar con debounce al cambiar tamaño (evita lag en mobile)
+  let resizeTimer: ReturnType<typeof setTimeout>;
   window.addEventListener("resize", () => {
-    ScrollTrigger.getAll().forEach((st) => st.kill());
-    initAnimations();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      initAnimations();
+    }, 300);
   });
 </script>
 

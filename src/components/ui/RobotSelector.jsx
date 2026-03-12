@@ -273,6 +273,9 @@ export default function RobotSelector() {
             <img
               src={selected.image.src || selected.image}
               alt={`Vista detallada del modelo ${selected.name}`}
+              width="400"
+              height="400"
+              loading="lazy"
               className={`relative z-[1] max-h-[85%] w-auto object-contain transition-all duration-500 drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)] ${
                 animating ? "opacity-0 scale-95" : "opacity-100 scale-100"
               }`}

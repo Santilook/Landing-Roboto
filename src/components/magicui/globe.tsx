@@ -8,16 +8,19 @@ import { cn } from "@/lib/utils"
 
 const MOVEMENT_DAMPING = 1400
 
+// Detectar si es dispositivo mobile para reducir carga GPU
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
+
 const GLOBE_CONFIG: COBEOptions = {
-  width: 800,
-  height: 800,
+  width: isMobile ? 200 : 800,
+  height: isMobile ? 200 : 800,
   onRender: () => {},
-  devicePixelRatio: 2,
+  devicePixelRatio: isMobile ? 1 : 2,
   phi: 0,
   theta: 0.3,
   dark: 0,
   diffuse: 0.4,
-  mapSamples: 16000,
+  mapSamples: isMobile ? 2000 : 16000,
   mapBrightness: 1.2,
   baseColor: [1, 1, 1],
   markerColor: [251 / 255, 100 / 255, 21 / 255],
