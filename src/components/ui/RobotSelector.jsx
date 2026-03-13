@@ -345,11 +345,9 @@ export default function RobotSelector() {
                   </div>
                   <button
                     className="buy-btn font-[Orbitron] text-[10px] lg:text-[11px] font-black tracking-[3px] py-4 px-8 rounded-xl bg-gray-900 text-cyan-400 hover:text-white hover:bg-cyan-600 transition-all duration-300 shadow-xl shadow-cyan-900/10 active:scale-95 uppercase cursor-pointer"
-                    onClick={() =>
-                      alert(
-                        `Iniciando protocolo de adquisición para: ${selected.name}`,
-                      )
-                    }
+                    onClick={() => {
+                      document.dispatchEvent(new CustomEvent('abrir-modal-reserva', { detail: selected.name }));
+                    }}
                   >
                     Iniciar Pre-Compra »
                   </button>

@@ -1,0 +1,129 @@
+
+<!-- Usamos la etiqueta dialog nativa de HTML para crear el Pop-up -->
+<dialog id="modal-reserva" class="backdrop:bg-black/80 rounded-2xl shadow-2xl p-0 w-full max-w-lg bg-white/80 backdrop-blur-2xl border border-emerald-500/20 text-black m-auto">
+  <div class="p-8 relative">
+    
+    <!-- Botón de Cerrar (la X en la esquina) -->
+    <button id="btn-cerrar-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <h3 class="text-2xl font-bold mb-2 text-cyan-200 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">Reservar Modelo</h3>
+    <p class="text-black  mb-6 text-sm">Estás a punto de solicitar: <span id="nombre-modelo-reserva" class="font-bold text-cyan-300"></span></p>
+
+    <!-- El formulario. Fíjate que en Astro usamos un ID para interceptarlo con JS -->
+    <form id="formulario-reserva" class="flex flex-col gap-4">
+      
+      <!-- Campo oculto donde inyectaremos mágicamente qué robot eligió el usuario -->
+      <input type="hidden" name="modelo" id="input-oculto-modelo" value="">
+
+      <div class="flex flex-col gap-1">
+        <label for="nombre" class="text-sm font-medium text-black">Nombre completo</label>
+        <input type="text" name="nombre" id="nombre" required class="bg-gray-50 border border-gray-100 rounded-xl focus-within:border-cyan-400 focus-within:bg-white focus-within:outline-none transition-colors shadow-sm p-3" placeholder="Ej: Tony Stark">
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="email" class="text-sm font-medium text-black">Correo Electrónico</label>
+        <input type="email" name="email" id="email" required class="bg-gray-50 border border-gray-100 rounded-xl focus-within:border-cyan-400 focus-within:bg-white focus-within:outline-none transition-colors shadow-sm p-3" placeholder="tony@starkindustries.com">
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="mensaje" class="text-sm font-medium text-black">Mensaje adicional (Opcional)</label>
+        <textarea name="mensaje" id="mensaje" rows="3" class="bg-gray-50 border border-gray-100 rounded-xl focus-within:border-cyan-400 focus-within:bg-white focus-within:outline-none transition-colors shadow-sm p-3" placeholder="¿Tienes algún requerimiento especial?"></textarea>
+      </div>
+
+      <button type="submit" id="btn-submit" class="mt-4 bg-cyan-500 hover:bg-cyan-600 text-black font-bold py-3 px-6 rounded-lg transition-colors flex justify-center items-center gap-2">
+        <span>Confirmar Reserva</span>
+      </button>
+
+      <!-- Mensajes de feedback (ocultos por defecto) -->
+      <p id="mensaje-exito" class="hidden text-emerald-400 text-sm font-medium text-center mt-2">¡Reserva enviada exitosamente!</p>
+      <p id="mensaje-error" class="hidden text-red-400 text-sm font-medium text-center mt-2">Ocurrió un error. Intenta nuevamente.</p>
+    </form>
+  </div>
+</dialog>
+
+<!-- Y aquí EL CEREBRO FRONTEND (JavaScript puro que solo se ejecuta en el navegador) -->
+<script>
+  // 1. Capturamos los elementos del DOM
+  const modal = document.getElementById('modal-reserva') as HTMLDialogElement;
+  const btnCerrar = document.getElementById('btn-cerrar-modal');
+  const formulario = document.getElementById('formulario-reserva') as HTMLFormElement;
+  const btnSubmit = document.getElementById('btn-submit') as HTMLButtonElement;
+  const msjExito = document.getElementById('mensaje-exito');
+  const msjError = document.getElementById('mensaje-error');
+
+  // 2. Lógica para cerrar el modal
+  btnCerrar?.addEventListener('click', () => {
+    modal.close();
+  });
+
+  // Cerrar al hacer clic afuera del dialog (en la parte oscura)
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) modal.close();
+  });
+
+  // 3. ¡LA CONEXIÓN CON TU BACKEND (API)!
+  formulario?.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Evitamos que la página recargue 
+
+    // Ocultamos mensajes anteriores y cambiamos el texto del botón
+    msjExito?.classList.add('hidden');
+    msjError?.classList.add('hidden');
+    const spanBoton = btnSubmit.querySelector('span');
+    if(spanBoton) spanBoton.textContent = "Enviando...";
+    btnSubmit.disabled = true;
+    btnSubmit.classList.add('opacity-50', 'cursor-not-allowed');
+
+    // Recogemos todos los datos del form
+    const formData = new FormData(formulario);
+
+    try {
+      // Hacemos un POST a la API que creaste en el paso anterior!
+      const respuesta = await fetch('/api/reservas', {
+        method: 'POST',
+        body: formData // <- Mandamos los datos
+      });
+
+      if (respuesta.ok) {
+        // Todo salió bien (Status 200)
+        msjExito?.classList.remove('hidden');
+        formulario.reset(); // Limpiamos los campos
+        
+        // Cerramos el modal automáticamante después de 2 segundos
+        setTimeout(() => {
+          modal.close();
+          msjExito?.classList.add('hidden');
+        }, 2000);
+      } else {
+         // Ocurrió algún error (ej. faltaron datos y devolvió status 400)
+         msjError?.classList.remove('hidden');
+      }
+    } catch (error) {
+      console.error("Error en Frontend:", error);
+      msjError?.classList.remove('hidden');
+    } finally {
+      // Devolvemos el botón a la normalidad
+      if(spanBoton) spanBoton.textContent = "Confirmar Reserva";
+      btnSubmit.disabled = false;
+      btnSubmit.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
+  });
+
+  // Este evento lo disparo desde otros archivos para abrir el modal a propósito y pasarle el nombre del robot
+  document.addEventListener('abrir-modal-reserva', ((e: CustomEvent) => {
+    const nombreRobot = e.detail; // Viene el nombre del robot ("Nexus R-1")
+    
+    // Inyectamos el nombre visualmente en el título
+    const spanNombre = document.getElementById('nombre-modelo-reserva');
+    if (spanNombre) spanNombre.textContent = nombreRobot;
+    
+    // Inyectamos el nombre secretamente en el input oculto que se enviará al Backend
+    const inputOculto = document.getElementById('input-oculto-modelo') as HTMLInputElement;
+    if (inputOculto) inputOculto.value = nombreRobot;
+
+    modal?.showModal(); // API nativa de 'dialog' para mostrarlo con el fondo oscuro
+  }) as EventListener);
+</script>
