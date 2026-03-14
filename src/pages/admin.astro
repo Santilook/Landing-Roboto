@@ -1,12 +1,17 @@
 ---
-import { db, Reservas } from "astro:db";
-import { desc} from "astro:db";
+import { supabase } from "@/lib/supabase";
 import Layout from "@/layouts/Layout.astro";
 
 let todasLasReservas = [];
 let errorMensaje = "";
 try {
-  todasLasReservas = await db.select().from(Reservas).orderBy(desc(Reservas.fecha));
+  const { data, error } = await supabase
+    .from('reservas')
+    .select('*')
+    .order('fecha', { ascending: false });
+  
+  if (error) throw error;
+  todasLasReservas = data || [];
 } catch (e) {
   console.error(e);
   errorMensaje = "No se pudieron cargar las reservas.";
@@ -71,7 +76,7 @@ const formatearFecha = (fechaOriginal: Date) => {
                 </tr>
               </thead>
               <tbody class="bg-[#F8FAFC] divide-y">
-                {todasLasReservas.map((reserva) => (
+                {todasLasReservas.map((reserva: any) => (
                   <tr class="hover:bg-gray-800/30 transition-colors">
                     
                     {/* Fecha y ID Oculto */}
