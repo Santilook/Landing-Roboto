@@ -2,26 +2,26 @@
 import ContadorAnimado from "../ui/ContadorAnimado.astro"
 ---
 
-<header class="relative min-h-screen overflow-hidden pointer-events-none">
+<header class="relative overflow-hidden pointer-events-none">
   <div
-    class="grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-5 z-50 relative h-full min-h-screen"
+    class="flex flex-col lg:min-h-screen z-50 relative initial-fade-in"
     style="pointer-events: none;"
   >
     <!-- [01] LOGOTIPO Y ENLACE SOCIAL -->
-    <div class="lg:col-span-2">
+    <div>
       <div
-        class="flex items-center justify-between lg:justify-start gap-3 mx-6 lg:mx-20 my-6 lg:my-10"
+        class="flex items-center justify-between lg:justify-start mx-6 lg:ml-7 my-6 2xl:mx-10 2xl:my-10"
       >
         <div class="flex items-center gap-3">
           <span
-            class="bg-[#00e5ff] py-5 lg:py-7 px-1.5 lg:px-2 rounded-full"
+            class="bg-[#00e5ff] py-5 lg:py-5 xl:py-7 px-1.5 lg:px-2 rounded-full"
             aria-hidden="true"></span>
-          <h1 class="text-4xl lg:text-6xl font-bold tracking-tighter">
+          <h1 class="text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold tracking-tighter">
             ROBOTO
           </h1>
         </div>
 
-        <div class="lg:absolute lg:right-12" style="pointer-events: visible;">
+        <div class="lg:absolute lg:right-5 2xl:right-12 lg:top-6 2xl:top-10" style="pointer-events: visible;">
           <a
             href="https://github.com/Santilook"
             target="_blank"
@@ -102,21 +102,19 @@ import ContadorAnimado from "../ui/ContadorAnimado.astro"
     </div>
 
     <!-- [02] TEXTO PRINCIPAL Y ACCIÓN -->
-    <div
-      class="lg:col-span-3 lg:row-span-3 lg:col-start-1 lg:row-start-2 items-center lg:justify-center flex"
-    >
-      <div class="flex flex-col gap-6 lg:gap-10 mx-6 lg:mx-20 my-10">
+    <div class="lg:flex-1 flex items-center">
+      <div class="flex flex-col gap-6 lg:gap-10 mx-6 2xl:mx-10 my-10 lg:mx-7 lg:max-w-[50%] xl:max-w-[55%] 2xl:max-w-[50%]">
         <h2
-          class="text-3xl p-2 lg:bg-transparent lg:backdrop-blur-none lg:p-0 lg:text-5xl font-bold leading-tight uppercase tracking-tighter rounded-sm"
+          class="text-3xl p-2 lg:bg-transparent lg:backdrop-blur-none lg:p-0 lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold leading-tight uppercase tracking-tighter rounded-sm"
         >
           Más Allá de la Capacidad Humana.
         </h2>
-        <div class="flex gap-4">
+        <div class="flex gap-4 lg:gap-0 2xl:gap-4">  
           <span
             class="bg-[#00e5ff] w-1.5 lg:w-2 min-h-[60px] rounded-full shrink-0"
             aria-hidden="true"></span>
           <p
-            class="text-md font-semibold lg:text-xl lg:min-h-50 lg:w-150 leading-relaxed text-sky-200 lg:text-gray-500 bg-sky-900/30 backdrop-blur-md rounded-sm p-2 lg:bg-transparent lg:backdrop-blur-none"
+            class="text-md font-semibold lg:text-md xl:text-lg 2xl:text-xl lg:h-full lg:w-100 2xl:w-150 leading-relaxed text-sky-200 lg:text-gray-500 bg-sky-900/30 backdrop-blur-md rounded-sm p-2 lg:p-5 lg:bg-transparent lg:backdrop-blur-none"
           >
             Presentamos la Serie X. Sistemas humanoides de ingeniería de
             precisión diseñados para la escala industrial y la compañía
@@ -146,57 +144,62 @@ import ContadorAnimado from "../ui/ContadorAnimado.astro"
     </div>
 
     <!-- [03] CONTADOR ANIMADO -->
-    <div class="lg:row-start-5 lg:col-start-1 px-6 lg:px-20 py-10">
+    <div class="px-6 xl:px-7 xl:py-5 2xl:px-10 py-10">
       <ContadorAnimado />
     </div>
 
     <!-- [04] NAVEGACIÓN (RESPONSIVE) -->
     <div
       id="nav-sentinel"
-      class="lg:col-span-2 lg:col-start-4 lg:row-start-1 px-6 lg:mx-20 lg:my-10 relative z-[100]"
+      class="px-6 relative z-[100]"
     >
       <nav
         id="main-nav"
-        class="lg:fixed lg:right-13 lg:top-50 py-10 lg:py-0 transition-all duration-300 z-[100]"
+        class="lg:fixed lg:right-4 lg:top-50 py-10 lg:py-0 transition-all duration-300 z-[100]"
         style="pointer-events: visible;"
       >
         <ul
-          class="flex flex-row lg:flex-col justify-center lg:justify-end gap-5 lg:gap-5 text-lg lg:text-2xl lg:text-end backdrop-blur-sm lg:backdrop-blur-none p-4 rounded-full border border-white/10 lg:border-none transition-all"
+          class="flex flex-row lg:flex-col justify-center lg:justify-end gap-5 lg:gap-5 lg:text-end backdrop-blur-sm lg:backdrop-blur-none p-4 rounded-full border border-white/10 lg:border-none transition-all"
         >
           <li class="flex items-center justify-end gap-2 lg:gap-5">
-            <p class="hidden lg:block text-xl text-[#8d9497]">01</p>
+            <p class="hidden lg:block text-lg text-[#8d9497]">01</p>
             <a
-              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl "
+              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-lg 2xl:text-xl"
               href="/">Inicio</a
             >
           </li>
           <li class="flex items-center justify-end gap-2 lg:gap-5">
-            <p class="hidden lg:block text-xl text-[#8d9497]">02</p>
+            <p class="hidden lg:block text-lg text-[#8d9497]">02</p>
             <a
-              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl"
+              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-lg 2xl:text-xl"
               href="#modelos">Modelos</a
             >
           </li>
           <li class="flex items-center justify-end gap-2 lg:gap-5">
-            <p class="hidden lg:block text-xl text-[#8d9497]">03</p>
+            <p class="hidden lg:block text-lg text-[#8d9497]">03</p>
             <a
-              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl"
+              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-lg 2xl:text-xl"
               href="#nosotros">Nosotros</a
             >
           </li>
           <li class="flex items-center justify-end gap-2 lg:gap-5">
-            <p class="hidden lg:block text-xl text-[#8d9497]">04</p>
+            <p class="hidden lg:block text-lg text-[#8d9497]">04</p>
             <a
-              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-xl"
+              class="hover:text-cyan-400 transition-colors uppercase tracking-widest text-xs lg:text-lg 2xl:text-xl"
               href="#contacto">Contacto</a
             >
           </li>
         </ul>
       </nav>
+    </div>
 
-      <!-- [05] CARD INFO PRODUCTO -->
+    <!-- [05] CARD INFO PRODUCTO -->
+    <!-- En mobile: flujo normal después de la nav. En desktop: posicionado absoluto dentro del header -->
+    <div
+      class="px-6 lg:px-0 lg:absolute lg:top-[280px] lg:right-[180px] xl:top-[340px] xl:right-[200px] 2xl:top-[500px] 2xl:right-[200px] z-[60]"
+    >
       <div
-        class="relative lg:absolute lg:top-120 lg:right-50 p-6 lg:p-10 rounded-xl border border-[#00e5ff]/30 bg-black/40 backdrop-blur-xl w-full lg:w-100 mt-10 lg:mt-0"
+        class="p-6 lg:p-5 rounded-xl border border-[#00e5ff]/30 bg-black/40 backdrop-blur-xl w-full lg:w-70 2xl:w-100 mt-10 lg:mt-0 2xl:p-10"
         style="pointer-events: none;"
         role="region"
         aria-labelledby="unit-title"
@@ -204,11 +207,11 @@ import ContadorAnimado from "../ui/ContadorAnimado.astro"
         <div class="flex flex-col gap-4 lg:gap-5">
           <h2
             id="unit-title"
-            class="text-xl lg:text-2xl font-bold text-white tracking-widest uppercase"
+            class="text-xl lg:text-xl 2xl:text-2xl font-bold text-white tracking-widest uppercase"
           >
             X-SERIES AONE
           </h2>
-          <p class="text-xs lg:text-sm text-gray-300 leading-relaxed">
+          <p class="text-xs lg:text-xs 2xl:text-sm text-gray-300 leading-relaxed">
             Descubre la nueva generación de robots humanoides. El X-SERIES AONE
             combina agilidad suprema con un núcleo cognitivo avanzado. Es capaz
             de integrarse en cualquier entorno.
@@ -235,10 +238,10 @@ import ContadorAnimado from "../ui/ContadorAnimado.astro"
       </div>
     </div>
 
-    <!-- [06] SCROLL INDICATOR -->
-    <div class="lg:col-start-3 lg:row-start-5 mt-10 lg:mt-0 pb-10">
+    <!-- [06] SCROLL INDICATOR (solo desktop, posicionado absoluto) -->
+    <div class="hidden lg:block lg:absolute lg:bottom-30 xl:bottom-15 2xl:bottom-0 lg:left-1/2 lg:-translate-x-1/2">
       <div
-        class="flex items-center justify-center relative h-full"
+        class="flex items-center justify-center"
         style="pointer-events: visible;"
       >
         <a
@@ -320,4 +323,5 @@ import ContadorAnimado from "../ui/ContadorAnimado.astro"
     font-weight: 700 !important;
     font-size: 0.75rem !important;
   }
+
 </style>

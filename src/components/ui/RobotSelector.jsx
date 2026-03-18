@@ -149,7 +149,7 @@ export default function RobotSelector() {
   return (
     <section
       id="modelos"
-      className="w-full min-h-screen flex flex-col items-center justify-center px-4 md:px-10 py-10 lg:py-15 mt-10 lg:mt-14 pointer-events-none box-border relative"
+      className="w-full min-h-screen flex flex-col items-center justify-center px-4 md:px-10 py-10 lg:py-15 mt-10 lg:-mt-10 xl:mt-0 2xl:mt-14 pointer-events-none box-border relative"
     >
       {/* ── ENCABEZADO ── */}
       <header className="text-center mb-10 lg:mb-12 pointer-events-auto">
@@ -179,7 +179,7 @@ export default function RobotSelector() {
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 w-full max-w-[1400px] items-start pointer-events-auto">
         {/* ── SELECCIÓN: Lista de robots (Scroll horizontal en mobile) ── */}
         <div
-          className="flex lg:flex-col gap-3 w-full lg:w-[440px] shrink-0 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 snap-x lg:snap-none no-scrollbar"
+          className="flex lg:flex-col gap-3 w-full lg:w-[350px] 2xl:w-[440px] shrink-0 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 snap-x lg:snap-none no-scrollbar"
           role="tablist"
           aria-label="Selección de modelos de robots"
         >

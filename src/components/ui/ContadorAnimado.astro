@@ -1,26 +1,23 @@
 ---
-/**
- * ContadorAnimado — Contador con animación via IntersectionObserver
- * Versión Astro pura + vanilla JS (sin React)
- */
+
 ---
 
 <div
   id="contador-animado"
-  class="w-full lg:w-auto h-auto px-6 py-6 lg:px-10 bg-white/40 backdrop-blur-md rounded-2xl border border-white/60 shadow-xl lg:relative lg:bottom-20"
+  class="w-full lg:w-90 xl:w-100 h-auto px-6 py-6 lg:px-10 bg-white/40 backdrop-blur-md rounded-2xl border border-white/60 shadow-xl lg:relative lg:bottom-16 xl:bottom-10 2xl:bottom-10"
 >
   <div
-    class="flex flex-col sm:flex-row gap-8 lg:gap-16 items-center lg:items-start text-center sm:text-left"
+    class="flex flex-col sm:flex-row gap-8 lg:gap-5 items-center lg:items-start text-center sm:text-left"
   >
     <div class="flex flex-col gap-1">
       <span
         id="counter-1"
-        class="font-[Orbitron] text-3xl lg:text-4xl font-black text-gray-900 tracking-[-1px]"
+        class="font-[Orbitron] text-3xl lg:text-2xl xl:text-3xl font-black text-gray-900 tracking-[-1px]"
       >
         +0%
       </span>
       <p
-        class="font-[Space_Mono] text-[10px] lg:text-[11px] text-cyan-600 tracking-[3px] uppercase font-bold"
+        class="font-[Space_Mono] text-[10px] lg:text-[11px]  text-cyan-600 tracking-[3px] uppercase font-bold"
       >
         Eficiencia Operativa
       </p>
@@ -35,7 +32,7 @@
     <div class="flex flex-col gap-1">
       <span
         id="counter-2"
-        class="font-[Orbitron] text-3xl lg:text-4xl font-black text-gray-900 tracking-[-1px]"
+        class="font-[Orbitron] text-3xl lg:text-2xl xl:text-3xl font-black text-gray-900 tracking-[-1px]"
       >
         +0.00s
       </span>
@@ -60,7 +57,7 @@
       (entries) => {
         if (entries[0].isIntersecting && !animated) {
           animated = true;
-          animateCounter(counter1El, 0, 99.9, 3, (v) => `+${v.toFixed(1)}%`);
+          animateCounter(counter1El, 0, 99.9, 0.80, (v) => `+${v.toFixed(1)}%`);
           animateCounter(counter2El, 0, 0.3, 0.01, (v) => `+${v.toFixed(2)}s`);
           observer.disconnect();
         }

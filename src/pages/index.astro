@@ -47,6 +47,25 @@ import Footer from "../components/common/footer.astro";
 </Layout>
 
 <style is:global>
+  /* Animación de entrada inicial solo para desktop */
+  @media (min-width: 1024px) {
+    .initial-fade-in {
+      opacity: 0;
+      animation: customFadeIn 3s ease-out 3s both;
+    }
+  }
+
+  @keyframes customFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   /* ── Fondo futurista para mobile/tablet ── */
   .spline-fallback {
     position: fixed;
