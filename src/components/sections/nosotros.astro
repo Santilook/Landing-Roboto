@@ -424,32 +424,43 @@ const jefes = [
         },
       );
     } else {
-      // En mobile, simplemente animar la entrada normal de las secciones
-      gsap.from(nosotrosSection.children, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: nosotrosSection,
-          start: "top 80%",
-        },
-      });
+      // En mobile, simplemente animar la entrada de forma segura
+      // Usamos una aproximación más suave y con un start más temprano
+      const elementsToAnimate = [
+        nosotrosSection.firstElementChild,
+        equipoSection.firstElementChild
+      ].filter(Boolean);
 
-      gsap.from(equipoSection.children, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: equipoSection,
-          start: "top 80%",
-        },
+      elementsToAnimate.forEach((el) => {
+        gsap.fromTo(el, 
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 95%", // Empezar casi en cuanto entre en vista
+              toggleActions: "play none none none"
+            }
+          }
+        );
       });
     }
+
+    // Refrescar ScrollTrigger para asegurar que los cálculos de posición sean correctos
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
   }
 
+  // Ejecutar tanto en carga inicial como en posibles eventos de Astro
   document.addEventListener("DOMContentLoaded", initAnimations);
+  // Por si acaso DOMContentLoaded ya pasó (común en despliegues)
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    initAnimations();
+  }
 
   // Re-inicializar con debounce al cambiar tamaño (evita lag en mobile)
   let resizeTimer: ReturnType<typeof setTimeout>;

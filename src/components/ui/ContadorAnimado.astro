@@ -57,7 +57,7 @@
       (entries) => {
         if (entries[0].isIntersecting && !animated) {
           animated = true;
-          animateCounter(counter1El, 0, 99.9, 0.80, (v) => `+${v.toFixed(1)}%`);
+          animateCounter(counter1El, 0, 99.9, 0.95, (v) => `+${v.toFixed(1)}%`);
           animateCounter(counter2El, 0, 0.3, 0.01, (v) => `+${v.toFixed(2)}s`);
           observer.disconnect();
         }
