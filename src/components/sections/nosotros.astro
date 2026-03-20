@@ -398,78 +398,101 @@ const jefes = [
 
     if (!nosotrosSection || !equipoSection) return;
 
-    // Solo habilitar el pinning y animación compleja en pantallas grandes
-    if (window.innerWidth > 1250) {
+    // 1. Limpieza total de estados previos y ScrollTriggers (fundamental para resizes)
+    ScrollTrigger.getAll().forEach(st => st.kill());
+    gsap.set([nosotrosSection, equipoSection], { clearProps: "all" });
+    if (nosotrosSection.firstElementChild) gsap.set(nosotrosSection.firstElementChild, { clearProps: "all" });
+    if (equipoSection.firstElementChild) gsap.set(equipoSection.firstElementChild, { clearProps: "all" });
+
+    const isDesktop = window.innerWidth > 1024;
+
+    if (isDesktop) {
+      // EFECTO PREMIUM: Pinning con Layering (Capas superpuestas)
+      
+      // Aseguramos que Nosotros sea visible de entrada en el flujo normal
+      gsap.set(nosotrosSection.firstElementChild, { opacity: 1, y: 0 });
+
+      // Pinning de la primera sección
       ScrollTrigger.create({
         trigger: nosotrosSection,
         start: "top top",
-        end: () => `+=${equipoSection.offsetHeight}`,
+        endTrigger: equipoSection,
+        end: "top top",
         pin: true,
         pinSpacing: false,
+        anticipatePin: 1,
       });
 
+      // Animación de entrada de la sección Equipo (se desliza sobre Nosotros)
       gsap.fromTo(
-        equipoSection,
-        { y: 80, opacity: 0 },
+        equipoSection.firstElementChild,
+        { y: 150, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           ease: "power2.out",
           scrollTrigger: {
             trigger: equipoSection,
-            start: "top 90%",
-            end: "top 20%",
-            scrub: 1.5,
+            start: "top 95%",
+            end: "top 10%",
+            scrub: 1,
+            toggleActions: "play none none reverse"
           },
-        },
+        }
       );
-    } else {
-      // En mobile, simplemente animar la entrada de forma segura
-      // Usamos una aproximación más suave y con un start más temprano
-      const elementsToAnimate = [
-        nosotrosSection.firstElementChild,
-        equipoSection.firstElementChild
-      ].filter(Boolean);
 
-      elementsToAnimate.forEach((el) => {
-        gsap.fromTo(el, 
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 95%", // Empezar casi en cuanto entre en vista
-              toggleActions: "play none none none"
+      // Efecto extra: desvanecer Nosotros a medida que Equipo lo cubre
+      gsap.to(nosotrosSection.firstElementChild, {
+        opacity: 0.1,
+        y: -100,
+        scrollTrigger: {
+          trigger: equipoSection,
+          start: "top 90%",
+          end: "top 0%",
+          scrub: true
+        }
+      });
+
+    } else {
+      // Mobile: Animación secuencial estándar
+      [nosotrosSection, equipoSection].forEach((section) => {
+        if (section.firstElementChild) {
+          gsap.fromTo(section.firstElementChild, 
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              scrollTrigger: {
+                trigger: section,
+                start: "top 95%",
+                toggleActions: "play none none none"
+              }
             }
-          }
-        );
+          );
+        }
       });
     }
 
-    // Refrescar ScrollTrigger para asegurar que los cálculos de posición sean correctos
+    // Recalcular todo tras un delay para compensar carga de otros componentes (Spline, fotos, etc.)
     setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 500);
+    }, 1500);
   }
 
-  // Ejecutar tanto en carga inicial como en posibles eventos de Astro
+  // Ejecución inicial y soporte para Astro
   document.addEventListener("DOMContentLoaded", initAnimations);
-  // Por si acaso DOMContentLoaded ya pasó (común en despliegues)
   if (document.readyState === "complete" || document.readyState === "interactive") {
     initAnimations();
   }
 
-  // Re-inicializar con debounce al cambiar tamaño (evita lag en mobile)
+  // Resize con debounce para evitar saltos en el scroll
   let resizeTimer: ReturnType<typeof setTimeout>;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
       initAnimations();
-    }, 300);
+    }, 500);
   });
 </script>
 
