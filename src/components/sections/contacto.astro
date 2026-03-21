@@ -71,7 +71,7 @@ const social = [
           >
           </div>
 
-          <form class="flex flex-col gap-8">
+          <form class="flex flex-col gap-8" id="contact-form">
             <!-- Campo: Nombre -->
             <div class="flex flex-col gap-2.5 pointer-events-auto">
               <label
@@ -101,6 +101,7 @@ const social = [
                 <input
                   id="subject-name"
                   type="text"
+                  name="nombre"
                   required
                   placeholder="Ej: John Nexus"
                   class="w-full bg-transparent py-4 pl-12 pr-4 font-[Space_Mono] text-gray-800 text-sm focus:outline-none placeholder-gray-400 font-bold"
@@ -137,6 +138,7 @@ const social = [
                 <input
                   id="neural-id"
                   type="email"
+                  name="email"
                   required
                   placeholder="usuario@red.nexus"
                   class="w-full bg-transparent py-4 pl-12 pr-4 font-[Space_Mono] text-gray-800 text-sm focus:outline-none placeholder-gray-400 font-bold"
@@ -171,6 +173,7 @@ const social = [
                 </div>
                 <select
                   id="protocol-type"
+                  name="protocolo"
                   class="w-full bg-transparent py-4 pl-12 pr-10 font-[Space_Mono] text-gray-800 text-sm focus:outline-none appearance-none font-bold cursor-pointer"
                 >
                   <option value="technical">CONSULTA TÉCNICA</option>
@@ -205,6 +208,7 @@ const social = [
               >
                 <textarea
                   id="transmission-details"
+                  name="mensaje"
                   rows="4"
                   placeholder="Iniciando transferencia de datos..."
                   class="w-full bg-transparent py-4 px-5 font-[Space_Mono] text-gray-800 text-sm focus:outline-none placeholder-gray-400 resize-none font-bold"
@@ -388,3 +392,24 @@ const social = [
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    const response = await fetch('/api/contacto', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (response.ok) {
+      alert('¡Conexion establesida con exito!');
+      form.reset();
+    } else {
+      alert('Error al establecer conexion. Intente nuevamente.');
+    }
+  });
+</script>
