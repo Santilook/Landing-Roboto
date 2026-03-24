@@ -220,6 +220,10 @@ const social = [
             <div class="pt-4">
               <BtnContacto />
             </div>
+
+            <!-- Mensajes de feedback (ocultos por defecto) -->
+            <p id="mensaje-exito" class="hidden text-emerald-400 text-sm font-medium text-center mt-2">¡Reserva enviada exitosamente!</p>
+            <p id="mensaje-error" class="hidden text-red-400 text-sm font-medium text-center mt-2">Ocurrió un error. Intenta nuevamente.</p>
           </form>
         </div>
       </article>
@@ -395,6 +399,8 @@ const social = [
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
+  const msjExito = document.getElementById('mensaje-exito');
+  const msjError = document.getElementById('mensaje-error');
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -406,10 +412,10 @@ const social = [
     });
 
     if (response.ok) {
-      alert('¡Conexion establesida con exito!');
+      msjExito?.classList.remove('hidden');
       form.reset();
     } else {
-      alert('Error al establecer conexion. Intente nuevamente.');
+      msjError?.classList.remove('hidden');
     }
   });
 </script>
