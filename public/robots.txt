@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Bloquear directorios/archivos sensibles
+Disallow: /admin/
+Disallow: /login/
+Disallow: /api/
+
+Sitemap: https://landing-roboto.vercel.app/sitemap-index.xml

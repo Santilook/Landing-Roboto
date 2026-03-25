@@ -1,24 +1,68 @@
 ---
 import SpeedInsights from "@vercel/speed-insights/astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title = "ROBOTO — Sistemas humanoides de ingeniería de precisión",
+  description = "Serie X: robótica autónoma para la industria y la compañía personal. Descubre el futuro de los sistemas humanoides adaptativos.",
+  image = "/logo-R.svg", // Reemplazar idealmente un screenshot o banner de OG si existe
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://landing-roboto.vercel.app/").toString(),
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="ROBOTO — Sistemas humanoides de ingeniería de precisión. Serie X: robótica autónoma para la industria y la compañía personal." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="ROBOTO" />
+    <meta name="theme-color" content="#0F172B" />
+    
+    <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/logo-R.svg" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site || "https://tusitio.com").toString()} />
+    <meta property="og:site_name" content="ROBOTO" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site || "https://tusitio.com").toString()} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Orbitron:wght@500;700&family=Rajdhani:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <title>ROBOTO</title>
+    
+    <!-- Evitar indexación si estamos en /admin, /login u otras áreas sensibles -->
+    {(Astro.url.pathname.includes('/admin') || Astro.url.pathname.includes('/login')) && (
+      <meta name="robots" content="noindex, nofollow" />
+    )}
+    
     <SpeedInsights />
   </head>
   <body>
+    <!-- Google Tag Manager / Analíticas podrían ir aquí -->
     <slot />
   </body>
 </html>
