@@ -8,7 +8,16 @@ if (!session || session.value !== 'authenticated_nexus_admin') {
   return Astro.redirect('/login');
 }
 
-let todasLasReservas = [];
+interface Reserva {
+  id: string;
+  nombre: string;
+  email: string;
+  modelo: string;
+  mensaje: string | null;
+  fecha: string;
+}
+
+let todasLasReservas: Reserva[] = [];
 let errorMensaje = "";
 try {
   const { data, error } = await supabase
@@ -17,7 +26,7 @@ try {
     .order('fecha', { ascending: false });
   
   if (error) throw error;
-  todasLasReservas = data || [];
+  todasLasReservas = (data as Reserva[]) || [];
 } catch (e) {
   console.error(e);
   errorMensaje = "No se pudieron cargar las reservas.";

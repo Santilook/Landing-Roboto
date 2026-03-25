@@ -4,14 +4,14 @@
   <div class="p-8 relative">
     
     <!-- Botón de Cerrar (la X en la esquina) -->
-    <button id="btn-cerrar-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+    <button id="btn-cerrar-modal" aria-label="Cerrar modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-colors">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
 
-    <h3 class="text-2xl font-bold mb-2 text-cyan-200 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">Reservar Modelo</h3>
-    <p class="text-black  mb-6 text-sm">Estás a punto de solicitar: <span id="nombre-modelo-reserva" class="font-bold text-cyan-300"></span></p>
+    <h3 class="text-2xl font-bold mb-2 text-gray-900">Reservar Modelo</h3>
+    <p class="text-gray-600 mb-6 text-sm">Estás a punto de solicitar: <span id="nombre-modelo-reserva" class="font-bold text-cyan-600"></span></p>
 
     <!-- El formulario. Fíjate que en Astro usamos un ID para interceptarlo con JS -->
     <form id="formulario-reserva" class="flex flex-col gap-4">

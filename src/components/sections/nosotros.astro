@@ -474,17 +474,12 @@ const jefes = [
       });
     }
 
-    // Recalcular todo tras un delay para compensar carga de otros componentes (Spline, fotos, etc.)
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 1500);
+    // Recalcular tras completar la carga de assets
+    ScrollTrigger.refresh(true);
   }
 
-  // Ejecución inicial y soporte para Astro
+  // Ejecución inicial (Astro con SSR ya tiene el DOM listo al ejecutar el script)
   document.addEventListener("DOMContentLoaded", initAnimations);
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    initAnimations();
-  }
 
   // Resize con debounce para evitar saltos en el scroll
   let resizeTimer: ReturnType<typeof setTimeout>;

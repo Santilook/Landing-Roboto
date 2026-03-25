@@ -4,8 +4,7 @@ import ContadorAnimado from "../ui/ContadorAnimado.astro"
 
 <header class="relative overflow-hidden pointer-events-none">
   <div
-    class="flex flex-col lg:min-h-screen z-50 relative initial-fade-in"
-    style="pointer-events: none;"
+    class="flex flex-col lg:min-h-screen z-50 relative initial-fade-in pointer-events-none"
   >
     <!-- [01] LOGOTIPO Y ENLACE SOCIAL -->
     <div>
@@ -122,9 +121,9 @@ import ContadorAnimado from "../ui/ContadorAnimado.astro"
             permitiéndoles aprender y evolucionar según tus necesidades.
           </p>
         </div>
-        <button
-          class="bg-[#0f172b] text-white font-bold py-3 px-8 flex items-center gap-2 rounded-full w-fit cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-500/20"
-          style="pointer-events: visible;"
+        <a
+          href="#modelos"
+          class="bg-[#0f172b] text-white font-bold py-3 px-8 flex items-center gap-2 rounded-full w-fit cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-500/20 pointer-events-auto"
           aria-label="Explorar nuestros modelos de robots"
         >
           Explora nuestros modelos
@@ -139,7 +138,7 @@ import ContadorAnimado from "../ui/ContadorAnimado.astro"
               fill="currentColor"
               d="M6.4 18L5 16.6L14.6 7H6V5h12v12h-2V8.4z"></path>
           </svg>
-        </button>
+        </a>
       </div>
     </div>
 

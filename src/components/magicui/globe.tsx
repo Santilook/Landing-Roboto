@@ -8,19 +8,11 @@ import { cn } from "@/lib/utils"
 
 const MOVEMENT_DAMPING = 1400
 
-// Detectar si es dispositivo mobile para reducir carga GPU
-const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
-
-const GLOBE_CONFIG: COBEOptions = {
-  width: isMobile ? 200 : 800,
-  height: isMobile ? 200 : 800,
-  onRender: () => {},
-  devicePixelRatio: isMobile ? 1 : 2,
+const BASE_GLOBE_CONFIG: Omit<COBEOptions, 'width' | 'height' | 'devicePixelRatio' | 'mapSamples' | 'onRender'> = {
   phi: 0,
   theta: 0.3,
   dark: 0,
   diffuse: 0.4,
-  mapSamples: isMobile ? 2000 : 16000,
   mapBrightness: 1.2,
   baseColor: [1, 1, 1],
   markerColor: [251 / 255, 100 / 255, 21 / 255],
@@ -41,16 +33,15 @@ const GLOBE_CONFIG: COBEOptions = {
 
 export function Globe({
   className,
-  config = GLOBE_CONFIG,
+  config,
 }: {
   className?: string
   config?: COBEOptions
 }) {
-  let phi = 0
-  let width = 0
+  const phiRef = useRef(0)
+  const widthRef = useRef(0)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const pointerInteracting = useRef<number | null>(null)
-  const pointerInteractionMovement = useRef(0)
 
   const r = useMotionValue(0)
   const rs = useSpring(r, {
@@ -69,15 +60,26 @@ export function Globe({
   const updateMovement = (clientX: number) => {
     if (pointerInteracting.current !== null) {
       const delta = clientX - pointerInteracting.current
-      pointerInteractionMovement.current = delta
       r.set(r.get() + delta / MOVEMENT_DAMPING)
     }
   }
 
   useEffect(() => {
+    // isMobile se evalúa aquí para asegurarse de que corra solo en el cliente (no SSR)
+    const isMobile = window.innerWidth < 1024
+
+    const resolvedConfig: COBEOptions = config ?? {
+      ...BASE_GLOBE_CONFIG,
+      width: isMobile ? 200 : 800,
+      height: isMobile ? 200 : 800,
+      devicePixelRatio: isMobile ? 1 : 2,
+      mapSamples: isMobile ? 2000 : 16000,
+      onRender: () => {},
+    }
+
     const onResize = () => {
       if (canvasRef.current) {
-        width = canvasRef.current.offsetWidth
+        widthRef.current = canvasRef.current.offsetWidth
       }
     }
 
@@ -85,14 +87,14 @@ export function Globe({
     onResize()
 
     const globe = createGlobe(canvasRef.current!, {
-      ...config,
-      width: width * 2,
-      height: width * 2,
+      ...resolvedConfig,
+      width: widthRef.current * 2,
+      height: widthRef.current * 2,
       onRender: (state) => {
-        if (!pointerInteracting.current) phi += 0.005
-        state.phi = phi + rs.get()
-        state.width = width * 2
-        state.height = width * 2
+        if (!pointerInteracting.current) phiRef.current += 0.005
+        state.phi = phiRef.current + rs.get()
+        state.width = widthRef.current * 2
+        state.height = widthRef.current * 2
       },
     })
 
