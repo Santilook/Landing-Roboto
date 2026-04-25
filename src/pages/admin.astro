@@ -2,7 +2,7 @@
 import { supabase } from "@/lib/supabase";
 import Layout from "@/layouts/Layout.astro";
 
-// 🔐 SEGURIDAD: Verificación de Sesión vía Cookies
+// SEGURIDAD: Verificación de Sesión vía Cookies
 const session = Astro.cookies.get('admin_session');
 if (!session || session.value !== 'authenticated_nexus_admin') {
   return Astro.redirect('/login');
@@ -31,7 +31,7 @@ try {
   console.error(e);
   errorMensaje = "No se pudieron cargar las reservas.";
 }
-// Formatear fechas para que se vean bonitas
+// Formatear fechas
 const formatearFecha = (fechaOriginal: string) => {
   return new Intl.DateTimeFormat('es-ES', {
     day: '2-digit', month: 'short', year: 'numeric',

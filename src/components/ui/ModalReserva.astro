@@ -3,7 +3,7 @@
 <dialog id="modal-reserva" class="backdrop:bg-black/80 rounded-2xl shadow-2xl p-0 w-full max-w-lg bg-white/80 backdrop-blur-2xl border border-emerald-500/20 text-black m-auto">
   <div class="p-8 relative">
     
-    <!-- Botón de Cerrar (la X en la esquina) -->
+    <!-- Botón de Cerrar (X) -->
     <button id="btn-cerrar-modal" aria-label="Cerrar modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-colors">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -13,10 +13,10 @@
     <h3 class="text-2xl font-bold mb-2 text-gray-900">Reservar Modelo</h3>
     <p class="text-gray-600 mb-6 text-sm">Estás a punto de solicitar: <span id="nombre-modelo-reserva" class="font-bold text-cyan-600"></span></p>
 
-    <!-- El formulario. Fíjate que en Astro usamos un ID para interceptarlo con JS -->
+    <!-- El formulario. Fíjamos un ID para interceptarlo con JS -->
     <form id="formulario-reserva" class="flex flex-col gap-4">
       
-      <!-- Campo oculto donde inyectaremos mágicamente qué robot eligió el usuario -->
+      <!-- Campo oculto donde inyectaremos qué robot eligió el usuario -->
       <input type="hidden" name="modelo" id="input-oculto-modelo" value="">
 
       <div class="flex flex-col gap-1">
@@ -81,7 +81,7 @@
     const formData = new FormData(formulario);
 
     try {
-      // Hacemos un POST a la API que creaste en el paso anterior!
+      // Hacemos un POST a la API!
       const respuesta = await fetch('/api/reservas', {
         method: 'POST',
         body: formData // <- Mandamos los datos

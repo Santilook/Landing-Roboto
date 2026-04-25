@@ -71,7 +71,7 @@ const social = [
           >
           </div>
 
-          <form class="flex flex-col gap-8" id="contact-form">
+          <form class="flex flex-col gap-8 pointer-events-auto" id="contact-form" action="javascript:void(0)">
             <!-- Campo: Nombre -->
             <div class="flex flex-col gap-2.5 pointer-events-auto">
               <label
@@ -176,9 +176,13 @@ const social = [
                   name="protocolo"
                   class="w-full bg-transparent py-4 pl-12 pr-10 font-[Space_Mono] text-gray-800 text-sm focus:outline-none appearance-none font-bold cursor-pointer"
                 >
-                  <option value="technical">CONSULTA TÉCNICA</option>
-                  <option value="sales">PROTOCOLO DE ADQUISICIÓN</option>
-                  <option value="support">DIAGNÓSTICO DEL SISTEMA</option>
+                  <option value="CONSULTA TÉCNICA">CONSULTA TÉCNICA</option>
+                  <option value="PROTOCOLO DE ADQUISICIÓN"
+                    >PROTOCOLO DE ADQUISICIÓN</option
+                  >
+                  <option value="DIAGNÓSTICO DEL SISTEMA"
+                    >DIAGNÓSTICO DEL SISTEMA</option
+                  >
                 </select>
                 <svg
                   class="absolute right-4 w-4 h-4 text-gray-400 pointer-events-none"
@@ -222,8 +226,20 @@ const social = [
             </div>
 
             <!-- Mensajes de feedback (ocultos por defecto) -->
-            <p id="mensaje-exito" class="hidden text-emerald-400 text-sm font-medium text-center mt-2">¡Reserva enviada exitosamente!</p>
-            <p id="mensaje-error" class="hidden text-red-400 text-sm font-medium text-center mt-2">Ocurrió un error. Intenta nuevamente.</p>
+            <p
+              id="mensaje-exito"
+              style="display:none"
+              class="text-emerald-400 text-sm font-bold text-center mt-2 py-2 px-4 bg-emerald-50 border border-emerald-300 rounded-lg"
+            >
+              ✓ ¡Mensaje enviado exitosamente!
+            </p>
+            <p
+              id="mensaje-error"
+              style="display:none"
+              class="text-red-400 text-sm font-bold text-center mt-2 py-2 px-4 bg-red-50 border border-red-300 rounded-lg"
+            >
+              ✗ Ocurrió un error. Intenta nuevamente.
+            </p>
           </form>
         </div>
       </article>
@@ -397,25 +413,58 @@ const social = [
   </div>
 </section>
 
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const msjExito = document.getElementById('mensaje-exito');
-  const msjError = document.getElementById('mensaje-error');
+<script is:inline>
+  (function () {
+    function bindContactForm() {
+      var form = document.getElementById("contact-form");
+      if (!form || form.dataset.bound === "1") return;
+      form.dataset.bound = "1";
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        e.stopPropagation();
 
-    const response = await fetch('/api/contacto', {
-      method: 'POST',
-      body: formData
-    });
+        var msjExito = form.querySelector("#mensaje-exito");
+        var msjError = form.querySelector("#mensaje-error");
+        var btn = form.querySelector('button[type="submit"]');
 
-    if (response.ok) {
-      msjExito?.classList.remove('hidden');
-      form.reset();
-    } else {
-      msjError?.classList.remove('hidden');
+        if (msjExito) msjExito.style.display = "none";
+        if (msjError) msjError.style.display = "none";
+        if (btn) btn.style.opacity = "0.5";
+
+        try {
+          var formData = new FormData(form);
+          var response = await fetch("/api/contacto", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.ok) {
+            if (msjExito) msjExito.style.display = "block";
+            form.reset();
+            setTimeout(function () {
+              if (msjExito) msjExito.style.display = "none";
+            }, 6000);
+          } else {
+            if (msjError) msjError.style.display = "block";
+          }
+        } catch (err) {
+          if (msjError) msjError.style.display = "block";
+        } finally {
+          if (btn) btn.style.opacity = "1";
+        }
+      });
     }
-  });
+
+    // Ejecutar inmediatamente y también al cargarse el DOM
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", bindContactForm);
+    } else {
+      bindContactForm();
+    }
+
+    // Para Astro View Transitions
+    document.addEventListener("astro:page-load", bindContactForm);
+    document.addEventListener("astro:after-swap", bindContactForm);
+  })();
 </script>
